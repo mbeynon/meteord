@@ -1,6 +1,8 @@
 [![Circle CI](https://circleci.com/gh/meteorhacks/meteord/tree/master.svg?style=svg)](https://circleci.com/gh/meteorhacks/meteord/tree/master)
 ## MeteorD - Docker Runtime for Meteor Apps
 
+## Fork mods
+
 ### 0. Prepare a new docker hub image that is a patched fork of upstream meteorhacks/meteord
 
 - install Docker for Mac
@@ -35,6 +37,7 @@
 	FROM <newscope>/meteord:onbuild
 ~~~
 
+## Upstream original
 
 There are two main ways you can use Docker with Meteor apps. They are:
 
