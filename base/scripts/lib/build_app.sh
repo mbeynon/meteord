@@ -8,13 +8,19 @@ BUNDLE_DIR=/tmp/bundle-dir
 cp -R /app $COPIED_APP_PATH
 cd $COPIED_APP_PATH
 
+echo ">>> installing local meteor npm deps ..."
+meteor npm install --production
+
+echo ">>> building app ..."
 meteor build --directory $BUNDLE_DIR --server=http://localhost:3000
 
+echo ">>> installing server npm deps ..."
 cd $BUNDLE_DIR/bundle/programs/server/
 npm i
 
 mv $BUNDLE_DIR/bundle /built_app
 
+echo ">>> cleanup ..."
 # cleanup
 rm -rf $COPIED_APP_PATH
 rm -rf $BUNDLE_DIR
