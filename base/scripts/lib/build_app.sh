@@ -8,8 +8,10 @@ BUNDLE_DIR=/tmp/bundle-dir
 cp -R /app $COPIED_APP_PATH
 cd $COPIED_APP_PATH
 
-echo ">>> installing local meteor npm deps ..."
-meteor npm install --production
+if [ -e ./package.json ]; then
+    echo ">>> installing local meteor npm deps ..."
+    meteor npm install --production
+fi
 
 echo ">>> building app ..."
 meteor build --directory $BUNDLE_DIR --server=http://localhost:3000
