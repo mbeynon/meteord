@@ -18,7 +18,8 @@ meteor build --directory $BUNDLE_DIR --server=http://localhost:3000
 
 echo ">>> installing server npm deps ..."
 cd $BUNDLE_DIR/bundle/programs/server/
-npm i
+#npm i
+meteor npm install
 
 mv $BUNDLE_DIR/bundle /built_app
 
