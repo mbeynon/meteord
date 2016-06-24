@@ -1,6 +1,32 @@
 [![Circle CI](https://circleci.com/gh/meteorhacks/meteord/tree/master.svg?style=svg)](https://circleci.com/gh/meteorhacks/meteord/tree/master)
 ## MeteorD - Docker Runtime for Meteor Apps
 
+### 0. Prepare a new docker hub image that is a patched fork of upstream meteorhacks/meteord
+
+- install Docker for Mac
+
+- fork the GH repo meteorhacks/meteord into your GH repo, make appropriate changes to onbuild and base scripts
+>	% git clone https://github.com/<your-gh-account>/meteord.git
+>	% cd meteord
+>   (make changes to scripts)
+
+- user docker to build the two new template images
+>	% cd base
+>	% docker build -t <newscope>/meteord:base .
+>	% docker login --username=<user> --email=<email>
+>	Password: xxxxxxx
+>	% docker push <newscope>/meteord:base
+>	====>
+>	% cd ../onbuild
+>	% docker build -t <newscope>/meteord:onbuild .
+>	% docker push <newscope>/meteord:onbuild
+>	====>
+
+- reference the new onbuild tagged version in Dockerfile of a Meteor app as described below
+>	Dockerfile:
+>		FROM <newscope>/meteord:onbuild
+
+
 There are two main ways you can use Docker with Meteor apps. They are:
 
 1. Build a Docker image for your app
